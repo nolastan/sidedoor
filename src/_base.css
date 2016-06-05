@@ -1,1 +1,60 @@
 html, body { height: 100%; }
+
+body {
+  line-height: 1.5;
+}
+
+main {
+  max-width: 48em;
+  margin: 0 auto;
+  padding: 0 1em;
+}
+
+section {
+  margin: 2ex 0;
+}
+
+.picture {
+  width: 100%;
+}
+
+.summary {
+  display: flex;
+}
+
+.hosts {
+  flex: 1;
+}
+
+.cta {
+  align-self: center;
+}
+
+.button {
+  font-size: 125%;
+  border-radius: 3px;
+  display: inline-block;
+  padding: 0 1.5em;
+  text-decoration: none;
+  line-height: 2;
+}
+
+.primary.button {
+  background-color: #D22D1C;
+  color: white;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.hosts li {
+  display: inline-block;
+}

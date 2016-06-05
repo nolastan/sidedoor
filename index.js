@@ -8,28 +8,35 @@ var cssvariables = require('postcss-css-variables')
 var compressor = require('node-minify')
 var conditionals = require('postcss-conditionals')
 var customMedia = require("postcss-custom-media")
+// var nesting = require('postcss-nesting')
+// var extend = require('postcss-extend')
+// var mixins = require('postcss-mixins')
 
 // css to be processed
 var css = fs.readFileSync("src/mnml.css", "utf8")
 
 // process css
-var output = postcss()
+postcss()
+  // .use(extend())
   .use(atImport())
+  // .use(mixins())
+  // .use(nesting())
   .use(cssvariables())
   .use(conditionals())
   .use(customMedia())
   .use(autoprefixer())
   .process(css, {
     from: "./src/mnml.css",
-    to: "./css/mnml.css"
+    to: "./mnml.css"
   })
-  .css
+  .then(function(css) {
+    fs.writeFile("css/mnml.css", css, 'utf-8');
 
-fs.writeFile("css/mnml.css", output, 'utf-8')
+    // Using Sqwish for CSS
+    new compressor.minify({
+        type: 'sqwish',
+        fileIn: './css/mnml.css',
+        fileOut: './css/mnml.min.css'
+    });
 
-// Using Sqwish for CSS
-new compressor.minify({
-    type: 'sqwish',
-    fileIn: './css/mnml.css',
-    fileOut: './css/mnml.min.css'
-});
+  });
